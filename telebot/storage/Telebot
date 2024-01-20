@@ -1,0 +1,42 @@
+import telebot
+
+# Set up bot token
+bot_token = '6602037169:AAFFnTgpz4Vl1J8mSKt-lYM0RJTOFZ-hUd4'
+
+# Initialize the bot
+bot = telebot.TeleBot(6602037169:AAFFnTgpz4Vl1J8mSKt-lYM0RJTOFZ-hUd4)
+
+# Handler for the "Task" button
+@bot.message_handler(func=lambda message: message.text == '1-Task')
+def handle_task(message):
+    # Prompt the user to perform various tasks
+    task_description = "To complete this task, please do the following:\n\n" \
+                       "1. Join our Telegram channel and group.\n" \
+                       "2. Follow us on Twitter and Instagram.\n" \
+                       "3. Like, comment, and retweet our pinned posts.\n" \
+                       "4. Send the links of your work as a message here."
+    bot.send_message(message.chat.id, task_description)
+
+# Handler for the "Referral" button
+@bot.message_handler(func=lambda message: message.text == '2-Referral')
+def handle_referral(message):
+    # Generate a referral link for the user
+    referral_link = "https://example.com/referral/" + str(message.chat.id)
+    bot.send_message(message.chat.id, "Your referral link: " + referral_link)
+
+# Handler for the "Payment" button
+@bot.message_handler(func=lambda message: message.text == '3-Payment')
+def handle_payment(message):
+    # Prompt the user to send their Bep20 wallet address
+    payment_description = "To withdraw your earnings, please send us your Bep20 wallet address."
+    bot.send_message(message.chat.id, payment_description)
+
+# Handler for the "Help" button
+@bot.message_handler(func=lambda message: message.text == '4-Help')
+def handle_help(message):
+    # Offer assistance to the user
+    help_description = "If you need any help or have any questions, please feel free to ask."
+    bot.send_message(message.chat.id, help_description)
+
+# Start the bot
+bot.polling()
